@@ -2,7 +2,7 @@ services:
   web:
     build:
       context: .
-    image: liberchat/jeunesse-libertaire:1.1.0
+    image: liberchat/jeunesse-libertaire:1.1.1
     container_name: jeunesse-libertaire
     restart: unless-stopped
     depends_on:
