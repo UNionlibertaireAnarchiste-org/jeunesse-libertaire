@@ -37,7 +37,8 @@ function jeunesse_nettoyer_crlf(string $str): string {
  */
 function inc_envoyer_mail($destinataire, $sujet, $corps, $from = '', $headers = '') {
     $destinataire = jeunesse_nettoyer_crlf((string) $destinataire);
-    if (!email_valide($destinataire)) {
+    $valid = function_exists('email_valide') ? (bool) email_valide($destinataire) : (bool) filter_var($destinataire, FILTER_VALIDATE_EMAIL);
+    if (!$valid) {
         return false;
     }
 
