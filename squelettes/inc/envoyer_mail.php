@@ -15,8 +15,22 @@ if (!defined('_ECRIRE_INC_VERSION')) {
     return;
 }
 
-include_spip('inc/charsets');
-include_spip('inc/texte');
+if (function_exists('include_spip')) {
+    include_spip('inc/charsets');
+    include_spip('inc/texte');
+    include_spip('inc/mail');
+}
+
+/**
+ * Journalisation défensive autonome
+ */
+function jeunesse_log(string $msg, string $type = 'mails'): void {
+    if (function_exists('spip_log')) {
+        spip_log($msg, $type);
+    } else {
+        error_log("[Jeunesse Libertaire $type] $msg");
+    }
+}
 
 /**
  * Nettoie une chaîne de toute tentative d'injection CRLF dans les entêtes
@@ -68,10 +82,15 @@ function inc_envoyer_mail($destinataire, $sujet, $corps, $from = '', $headers = 
         $from_header = $from;
     }
 
-    $texte = nettoyer_caracteres_mail($texte);
-    $sujet = jeunesse_nettoyer_crlf(nettoyer_caracteres_mail((string) $sujet));
+    if (function_exists('nettoyer_caracteres_mail')) {
+        $texte = nettoyer_caracteres_mail($texte);
+        $sujet = jeunesse_nettoyer_crlf(nettoyer_caracteres_mail((string) $sujet));
+    } else {
+        $texte = str_replace(["\r\n", "\r"], "\n", $texte);
+        $sujet = jeunesse_nettoyer_crlf((string) $sujet);
+    }
 
-    if (init_mb_string()) {
+    if (function_exists('init_mb_string') && init_mb_string()) {
         $charset = $GLOBALS['meta']['charset'] ?? 'utf-8';
         mb_internal_encoding($charset);
         $sujet = mb_encode_mimeheader($sujet, $charset, 'Q', "\n");
@@ -82,7 +101,16 @@ function inc_envoyer_mail($destinataire, $sujet, $corps, $from = '', $headers = 
         $texte = wordwrap($texte);
     }
 
-    [$headers, $texte] = mail_normaliser_headers($headers, $from_header, $destinataire, $texte, $parts);
+    if (function_exists('mail_normaliser_headers')) {
+        [$headers, $texte] = mail_normaliser_headers($headers, $from_header, $destinataire, $texte, $parts);
+    } else {
+        if (!str_contains($headers, 'From:')) {
+            $headers = "From: $from_header\n" . $headers;
+        }
+        if (!str_contains($headers, 'Content-Type:')) {
+            $headers .= "\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\n";
+        }
+    }
 
     // Vérifier si un serveur SMTP est configuré dans l'environnement
     $smtp_host = trim((string) getenv('SMTP_HOST'));
@@ -106,15 +134,15 @@ function inc_envoyer_mail($destinataire, $sujet, $corps, $from = '', $headers = 
         );
 
         if ($resultat) {
-            spip_log("Email envoyé via SMTP sécurisé à $destinataire [Sujet: $sujet]", 'mails');
+            jeunesse_log("Email envoyé via SMTP sécurisé à $destinataire [Sujet: $sujet]", 'mails');
             return true;
         }
 
-        spip_log("Échec envoi SMTP à $destinataire, repli sur mail() local", 'mails');
+        jeunesse_log("Échec envoi SMTP à $destinataire, repli sur mail() local", 'mails');
     }
 
     // Repli sur l'envoi système PHP mail() si pas de SMTP configuré
-    spip_log("mail $destinataire\n$sujet\n$headers", 'mails');
+    jeunesse_log("mail $destinataire\n$sujet\n$headers", 'mails');
     if (defined('_TEST_EMAIL_DEST')) {
         if (!_TEST_EMAIL_DEST) {
             return false;
@@ -144,7 +172,7 @@ function jeunesse_envoyer_smtp(
     $timeout = 15;
     $clean_host = preg_replace('/[^a-zA-Z0-9.-]/', '', $host);
     if (empty($clean_host)) {
-        spip_log("SMTP Hôte invalide : $host", 'mails');
+        jeunesse_log("SMTP Hôte invalide : $host", 'mails');
         return false;
     }
 
@@ -173,7 +201,7 @@ function jeunesse_envoyer_smtp(
     );
 
     if (!$socket) {
-        spip_log("SMTP Connexion échouée à $remote_addr ($errstr)", 'mails');
+        jeunesse_log("SMTP Connexion échouée à $remote_addr ($errstr)", 'mails');
         return false;
     }
 
@@ -196,7 +224,7 @@ function jeunesse_envoyer_smtp(
         $code = (int) substr($reply, 0, 3);
         if (!in_array($code, $expected_codes, true)) {
             $masked_cmd = preg_match('/^(AUTH|PASS)/i', $cmd) ? '[COMMANDE MASQUÉE]' : $cmd;
-            spip_log("SMTP Erreur commande '$masked_cmd' : $reply", 'mails');
+            jeunesse_log("SMTP Erreur commande '$masked_cmd' : $reply", 'mails');
             return false;
         }
         return true;
@@ -222,7 +250,7 @@ function jeunesse_envoyer_smtp(
             $crypto_method = STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT | STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT;
             $crypto = @stream_socket_enable_crypto($socket, true, $crypto_method);
             if (!$crypto) {
-                spip_log("SMTP Échec négociation TLS sur $clean_host", 'mails');
+                jeunesse_log("SMTP Échec négociation TLS sur $clean_host", 'mails');
                 fclose($socket);
                 return false;
             }
@@ -244,7 +272,7 @@ function jeunesse_envoyer_smtp(
             return false;
         }
         if (!$send_cmd(base64_encode($pass), [235])) {
-            spip_log("SMTP Échec authentification utilisateur $user", 'mails');
+            jeunesse_log("SMTP Échec authentification utilisateur $user", 'mails');
             fclose($socket);
             return false;
         }
