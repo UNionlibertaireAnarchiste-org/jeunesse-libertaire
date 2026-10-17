@@ -38,6 +38,7 @@ services:
       - ./prive/login_prive.css:/var/www/html/prive/themes/spip/login_prive.css:ro
       - ./prive/login_prive.css:/var/www/html/prive/themes/spip/login_jeunesse.css:ro
       - ./prive/login.html:/var/www/html/prive/login.html:ro
+      - ./prive/modeles/mail_inscription.html:/var/www/html/prive/modeles/mail_inscription.html:ro
     networks: [front, back]
 
   db:

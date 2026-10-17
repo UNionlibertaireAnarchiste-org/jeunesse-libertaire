@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>[(#NOM_SITE_SPIP)] — Bienvenue dans la rédaction collective</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #090a0f; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #f4f4f5; -webkit-font-smoothing: antialiased;">
+  <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #090a0f; padding: 40px 20px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #12141c; border: 1px solid #27272a; border-radius: 8px; overflow: hidden; text-align: left;">
+          <!-- En-tête -->
+          <tr>
+            <td style="padding: 28px 32px 22px; border-bottom: 1px solid #27272a; background-color: #18181b;">
+              <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #dc2626; margin-bottom: 6px;">
+                Média participatif d&#039;éducation populaire
+              </div>
+              <div style="font-size: 22px; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">
+                <span style="display: inline-block; width: 26px; height: 26px; line-height: 26px; border-radius: 50%; border: 1.5px solid #dc2626; color: #dc2626; text-align: center; font-size: 15px; margin-right: 8px; vertical-align: middle;">Ⓐ</span>
+                [(#NOM_SITE_SPIP)]
+              </div>
+            </td>
+          </tr>
+          <!-- Corps principal -->
+          <tr>
+            <td style="padding: 32px; color: #d4d4d8; font-size: 15px; line-height: 1.6;">
+              <h1 style="margin: 0 0 16px; font-size: 20px; font-weight: 700; color: #ffffff;">
+                Bienvenue dans le collectif de rédaction[ (#ENV{nom})] !
+              </h1>
+              <p style="margin: 0 0 20px; color: #a1a1aa; font-size: 14.5px;">
+                Ton inscription a bien été enregistrée pour prendre part à l&#039;écriture, aux analyses et aux débats autogérés de <strong>[(#NOM_SITE_SPIP)]</strong>.
+              </p>
+
+              <!-- Carte Identifiants & Activation -->
+              <div style="background-color: #18181b; border-left: 3px solid #dc2626; border-radius: 4px; padding: 18px 20px; margin-bottom: 24px;">
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #f87171; margin-bottom: 8px;">
+                  Initialisation de ton compte
+                </div>
+                <div style="color: #f4f4f5; font-size: 14px; margin-bottom: 12px;">
+                  <strong>Identifiant de connexion :</strong> <code style="background-color: #27272a; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #6ee7b7;">[(#ENV{email,#ENV{login}})]</code>
+                </div>
+                <p style="margin: 0; color: #d4d4d8; font-size: 13.5px; line-height: 1.5;">
+                  Pour définir ton mot de passe et activer ton accès rédacteur, clique sur le lien sécurisé ci-dessous :
+                </p>
+              </div>
+
+              <!-- Bouton d'action principal -->
+              <div style="text-align: center; margin: 28px 0;">
+                <a href="[(#ENV{url_reset})]" style="display: inline-block; background-color: #dc2626; color: #ffffff; text-decoration: none; font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 6px; border: 1px solid #b91c1c;">
+                  Définir mon mot de passe ›
+                </a>
+              </div>
+
+              <p style="font-size: 12px; color: #71717a; word-break: break-all; margin: 0 0 24px; line-height: 1.5;">
+                Si le bouton ne s&#039;affiche pas correctement, copie cette adresse dans ton navigateur :<br>
+                <a href="[(#ENV{url_reset})]" style="color: #6ee7b7; text-decoration: underline;">[(#ENV{url_reset})]</a>
+              </p>
+
+              <!-- Rappel de fonctionnement collégial -->
+              <div style="background-color: #141418; border: 1px solid #27272a; border-radius: 6px; padding: 16px; margin-bottom: 24px;">
+                <div style="font-weight: 700; color: #ffffff; font-size: 13.5px; margin-bottom: 6px;">
+                  Fonctionnement autogéré &amp; relecture collégiale
+                </div>
+                <p style="margin: 0; font-size: 13px; color: #a1a1aa; line-height: 1.5;">
+                  Chaque texte proposé est partagé horizontalement avec l&#039;ensemble du collectif de rédaction. Pour préserver l&#039;autonomie et la cohérence de notre outil commun face aux provocations, la mise en ligne effective s&#039;opère après concertation et validation des compagnes et compagnons de l&#039;équipe d&#039;administration.
+                </p>
+              </div>
+
+              <p style="margin: 0; font-size: 14px; color: #d4d4d8;">
+                Amitiés libertaires et de lutte,<br>
+                <strong style="color: #ffffff;">Le collectif de Jeunesse Libertaire</strong>
+              </p>
+            </td>
+          </tr>
+          <!-- Pied de courriel -->
+          <tr>
+            <td style="padding: 20px 32px; border-top: 1px solid #27272a; background-color: #18181b; text-align: center; font-size: 12px; color: #71717a;">
+              <p style="margin: 0 0 6px;">
+                <a href="#URL_SITE_SPIP" style="color: #a1a1aa; text-decoration: none; margin: 0 8px;">Accueil</a> •
+                <a href="#URL_PAGE{proposer}" style="color: #a1a1aa; text-decoration: none; margin: 0 8px;">Tribune libre</a> •
+                <a href="#URL_PAGE{charte}" style="color: #a1a1aa; text-decoration: none; margin: 0 8px;">Charte éditoriale</a> •
+                <a href="#URL_PAGE{confidentialite}" style="color: #a1a1aa; text-decoration: none; margin: 0 8px;">Confidentialité</a>
+              </p>
+              <p style="margin: 0;">
+                Média indépendant, autogéré, sans publicité ni traçage.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

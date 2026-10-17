@@ -17,6 +17,8 @@ function jeunesse_collaboratif_upgrade($nom_meta_base_version, $version_cible) {
 
 function jeunesse_collaboratif_creer_rubriques() {
     include_spip('action/editer_objet');
+    include_spip('inc/meta');
+    ecrire_meta('accepter_inscriptions', 'oui');
     foreach (['Actualités', 'Témoignages', 'Analyses', 'Ressources', 'Débats', 'Agenda'] as $titre) {
         if (!sql_getfetsel('id_rubrique', 'spip_rubriques', 'titre=' . sql_quote($titre))) {
             $id = objet_inserer('rubrique', 0);

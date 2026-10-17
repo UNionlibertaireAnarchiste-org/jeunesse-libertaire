@@ -9,6 +9,7 @@ if [ -f /var/www/html/config/connect.php ]; then
     su -p www-data -s /bin/sh -c "cd /var/www/html && spip plugins:activer --yes jeunesse_collaboratif"
     su -p www-data -s /bin/sh -c "cd /var/www/html && spip plugins:activer --yes nospam"
     su -p www-data -s /bin/sh -c "cd /var/www/html && spip plugins:maj:bdd --no-interaction"
+    su -p www-data -s /bin/sh -c "cd /var/www/html && spip config:ecrire accepter_inscriptions --valeur oui --no-interaction"
 fi
 
 exec apache2-foreground
