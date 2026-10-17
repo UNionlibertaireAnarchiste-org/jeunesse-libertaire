@@ -16,7 +16,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/AnARCHIS12/jeunesse-libertaire"><img src="https://img.shields.io/badge/estado-activo-10b981?style=flat-square" alt="Estado" /></a>
+  <a href="https://github.com/UNionlibertaireAnarchiste-org/jeunesse-libertaire"><img src="https://img.shields.io/badge/estado-activo-10b981?style=flat-square" alt="Estado" /></a>
+  <a href="https://hub.docker.com/r/liberchat/jeunesse-libertaire"><img src="https://img.shields.io/badge/docker_hub-liberchat%2Fjeunesse--libertaire%3A1.1.0-003545?style=flat-square" alt="Docker Hub" /></a>
+  <a href="VERSION"><img src="https://img.shields.io/badge/versión-1.1.0-blue?style=flat-square" alt="Versión 1.1.0" /></a>
   <a href="https://www.spip.net"><img src="https://img.shields.io/badge/SPIP-4.4.28-c92a2a?style=flat-square" alt="Versión SPIP" /></a>
   <a href="https://www.php.net"><img src="https://img.shields.io/badge/PHP-8.4-4f5b93?style=flat-square" alt="Versión PHP" /></a>
   <a href="https://mariadb.org"><img src="https://img.shields.io/badge/MariaDB-11.8_LTS-003545?style=flat-square" alt="Versión MariaDB" /></a>

@@ -149,9 +149,18 @@ SPIP_ADMIN_LOGIN=admin
 SPIP_ADMIN_NAME=Admin
 SPIP_ADMIN_EMAIL=admin@localhost
 SPIP_ADMIN_PASSWORD=$(secret)
+
+# Relais de messagerie SMTP sécurisé
+SMTP_HOST=
+SMTP_PORT=587
+SMTP_USER=
+SMTP_PASSWORD=
+SMTP_SECURE=tls
+SMTP_FROM=contact@jeunesselibertaire.org
+SMTP_FROM_NAME="Jeunesse Libertaire"
 EOF
 chmod 600 "$INSTALL_DIR/.env"
-ok "Trois secrets uniques ont été générés dans .env"
+ok "Trois secrets uniques ont été générés dans .env (avec configuration SMTP)"
 
 if ((START_STACK)); then
   step "Construction et démarrage des conteneurs"
