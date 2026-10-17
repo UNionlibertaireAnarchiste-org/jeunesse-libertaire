@@ -6,13 +6,19 @@
 
 /* Barre superieure Reseaux Sociaux */
 .top-bar{background:var(--ink);color:var(--paper);border-bottom:1px solid #2a2825;font:10px 'DM Mono',monospace;letter-spacing:.08em;padding:8px 5vw}
-.top-bar-content{display:flex;justify-content:space-between;align-items:center}
+.top-bar-content{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.top-bar-left{display:flex;align-items:center;gap:18px}
+.top-bar-right{display:flex;align-items:center;gap:18px}
 .top-bar-tag{color:var(--muted);text-transform:uppercase;font-weight:500}
+.top-bar-nav{display:flex;gap:14px;align-items:center}
+.top-bar-nav a{color:var(--paper);text-decoration:none;transition:color .15s ease}
+.top-bar-nav a:hover{color:var(--red)}
+.top-bar-nav a.highlight{color:var(--red);font-weight:700}
 .social-links{display:flex;gap:18px;align-items:center}
 .social-links a{display:inline-flex;align-items:center;gap:6px;color:var(--paper);text-decoration:none;transition:color .15s ease,transform .15s ease}
 .social-links a svg{flex-shrink:0}
 .social-links a:hover{color:var(--red);transform:translateY(-1px)}
-@media(max-width:600px){.top-bar-tag{display:none}.social-links{width:100%;justify-content:space-between}.social-links a span{display:none}}
+@media(max-width:700px){.top-bar-tag{display:none}.top-bar-content{justify-content:center}.top-bar-left,.top-bar-right{width:100%;justify-content:center}.social-links a span{display:none}}
 
 /* Styles dédiés à l'affichage des articles et des images miniatures */
 .article-hero-image {
@@ -287,5 +293,89 @@
   .compose-action-btn {
     text-align: center;
   }
+}
+
+/* Styles pour le formulaire d'inscription et authentification */
+.auth-notice {
+  background: var(--white);
+  border-left: 4px solid var(--red);
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-left-color: var(--red);
+  padding: 16px 20px;
+  margin: 25px 0 35px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.auth-notice strong {
+  color: var(--red);
+}
+.formulaire_inscription fieldset {
+  border: 1px solid var(--line);
+  padding: 24px 26px;
+  margin: 0 0 25px;
+  background: var(--paper);
+}
+.formulaire_inscription legend {
+  font: 12px 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 700;
+  color: var(--red);
+  padding: 0 6px;
+}
+.formulaire_inscription .explication {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 6px 0 16px;
+}
+.formulaire_inscription .editer-groupe {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.formulaire_inscription .editer label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.formulaire_inscription input[type="text"],
+.formulaire_inscription input[type="email"] {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: 12px 14px;
+  font: 15px/1.5 Manrope, sans-serif;
+  color: var(--ink);
+  box-sizing: border-box;
+  border-radius: 0;
+}
+.formulaire_inscription input:focus {
+  outline: 2px solid var(--ink);
+  border-color: var(--ink);
+}
+.formulaire_inscription .boutons {
+  margin-top: 20px;
+}
+.formulaire_inscription .boutons input.submit {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  font: 13px 'DM Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 13px 26px;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform .1s, box-shadow .1s;
+}
+.formulaire_inscription .boutons input.submit:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--ink);
 }
 

@@ -165,6 +165,27 @@ jeunesse-libertaire/
 
 ---
 
+---
+
+## Configuration de la messagerie & Envoi de messages (SMTP)
+
+Pour permettre l'envoi fiable des courriels de confirmation d'inscription et des notifications d'articles, configurez les variables SMTP dans votre fichier `.env` sur le serveur :
+
+```bash
+# Activation du relai SMTP sécurisé (ex: Postfix, Mailcow, serveur dédié)
+SMTP_HOST=mail.mondomaine.org
+SMTP_PORT=587
+SMTP_USER=contact@jeunesselibertaire.org
+SMTP_PASSWORD=mon_mot_de_passe_securise
+SMTP_SECURE=tls
+SMTP_FROM=contact@jeunesselibertaire.org
+SMTP_FROM_NAME="Jeunesse Libertaire"
+```
+
+Le module autonome [squelettes/inc/envoyer_mail.php](file:///home/anar/jeunesse-libertaire/squelettes/inc/envoyer_mail.php) prend en charge nativement la connexion TLS chiffrée sans recourir à des librairies externes propriétaires ni dépendre de services tiers.
+
+---
+
 ## Mises à jour du serveur
 
 Pour répercuter les dernières améliorations sur votre serveur en production :

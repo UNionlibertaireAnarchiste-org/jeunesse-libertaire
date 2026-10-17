@@ -20,6 +20,13 @@ services:
       SPIP_ADMIN_NAME: ${SPIP_ADMIN_NAME:-Admin}
       SPIP_ADMIN_EMAIL: ${SPIP_ADMIN_EMAIL:-admin@localhost}
       SPIP_ADMIN_PASS: ${SPIP_ADMIN_PASSWORD:?Définir SPIP_ADMIN_PASSWORD dans .env}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_SECURE: ${SMTP_SECURE:-tls}
+      SMTP_FROM: ${SMTP_FROM:-}
+      SMTP_FROM_NAME: ${SMTP_FROM_NAME:-Jeunesse Libertaire}
     ports:
       - "${WEB_BIND:-127.0.0.1}:${WEB_PORT:-8088}:80"
     volumes:

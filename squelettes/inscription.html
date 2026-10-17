@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rejoindre la rédaction collective — [(#NOM_SITE_SPIP|textebrut)]</title>
+  #SET{inscr_og_titre,#VAL{'Rejoindre la rédaction collective — '}|concat{#NOM_SITE_SPIP|textebrut}}
+  #SET{inscr_og_url,#URL_PAGE{inscription}}
+  #SET{inscr_og_image,#VAL|jeunesse_og_image_site}
+  #SET{inscr_og_desc,#VAL{"Participer à la rédaction autogérée, proposer des analyses et faire vivre les luttes lycéennes et étudiantes en relecture collective."}}
+  [(#INCLURE{fond=inclure/head_meta, og_titre=#GET{inscr_og_titre}, og_description=#GET{inscr_og_desc}, og_url=#GET{inscr_og_url}, og_type=website, og_image=#GET{inscr_og_image}, lang=fr})]
+  <link rel="stylesheet" href="[(#CHEMIN{css/jeunesse.css})]?v=10">
+</head>
+<body>
+<INCLURE{fond=inclure/top-bar} />
+<header class="site-header">
+  <a class="wordmark" href="#URL_SITE_SPIP"><span class="mark">Ⓐ</span> JEUNESSE<br>LIBERTAIRE</a>
+  <nav aria-label="Navigation principale">
+    <a href="#URL_SITE_SPIP">Accueil</a>
+    <a href="#URL_PAGE{proposer}">Tribune libre</a>
+    <a href="#URL_PAGE{charte}">Charte éditoriale</a>
+    <a href="#URL_PAGE{confidentialite}">Confidentialité</a>
+    <a href="#URL_PAGE{login}">Connexion</a>
+  </nav>
+</header>
+<main class="contribution-page">
+  <p class="eyebrow">Autogestion &amp; Émancipation collective</p>
+  <h1>Prendre part à<br><em>la rédaction collective.</em></h1>
+  <p class="intro">Cet espace est ouvert à toutes les compagnes et compagnons de lutte qui souhaitent faire circuler leurs analyses, récits de grève, outils d'organisation et réflexions d'action directe. L'écriture comme la décision y sont horizontales, collectives et désintéressées.</p>
+
+  <div class="auth-notice">
+    <strong>Cogestion et relecture collégiale :</strong> Votre inscription vous associe directement au collectif de rédaction. Chaque texte proposé est discuté et évalué horizontalement entre compagnes et compagnons. Pour préserver l'autonomie et la cohérence de notre outil commun face aux dérives ou provocations, la mise en ligne effective s'opère après accord collégial et validation des compagnes et compagnons de l'équipe d'administration.
+  </div>
+
+  [(#FORMULAIRE_INSCRIPTION{1comite})]
+
+  <p class="privacy-note" style="margin-top: 30px;">
+    Vous participez déjà au collectif ? <a href="#URL_PAGE{login}">Accédez à l'espace de rédaction</a>.
+  </p>
+</main>
+<footer>
+  <a class="wordmark" href="#URL_SITE_SPIP"><span class="mark">Ⓐ</span> JEUNESSE LIBERTAIRE</a>
+  <p>Média participatif et d’éducation populaire.</p>
+  <div>
+    <a href="#URL_PAGE{mentions}">Mentions et licences</a>
+    <a href="#URL_PAGE{charte}">Charte éditoriale</a>
+  </div>
+</footer>
+</body>
+</html>
